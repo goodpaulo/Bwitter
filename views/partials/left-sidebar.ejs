@@ -1,0 +1,706 @@
+<div class="sidenav">
+    <div class="sidenavContainer">
+        <a href="/homepage" class="sidenavLink">
+            <div class="bwitterLogoContainer">
+                <svg viewBox="0 0 24 24">
+                    <g>
+                        <path class="bwitterLogo" d="M23.643 4.937c-.835.37-1.732.62-2.675.733.962-.576 1.7-1.49 2.048-2.578-.9.534-1.897.922-2.958 1.13-.85-.904-2.06-1.47-3.4-1.47-2.572 0-4.658 2.086-4.658 4.66 0 .364.042.718.12 1.06-3.873-.195-7.304-2.05-9.602-4.868-.4.69-.63 1.49-.63 2.342 0 1.616.823 3.043 2.072 3.878-.764-.025-1.482-.234-2.11-.583v.06c0 2.257 1.605 4.14 3.737 4.568-.392.106-.803.162-1.227.162-.3 0-.593-.028-.877-.082.593 1.85 2.313 3.198 4.352 3.234-1.595 1.25-3.604 1.995-5.786 1.995-.376 0-.747-.022-1.112-.065 2.062 1.323 4.51 2.093 7.14 2.093 8.57 0 13.255-7.098 13.255-13.254 0-.2-.005-.402-.014-.602.91-.658 1.7-1.477 2.323-2.41z"></path>
+                    </g>
+                </svg>
+            </div>
+        </a>
+        <a href="/homepage" class="sidenavLink">
+            <div class="sidenavElementContainer">
+                <svg>
+                    <g>
+                        <path d="M22.46 7.57L12.357 2.115c-.223-.12-.49-.12-.713 0L1.543 7.57c-.364.197-.5.652-.303 1.017.135.25.394.393.66.393.12 0 .243-.03.356-.09l.815-.44L4.7 19.963c.214 1.215 1.308 2.062 2.658 2.062h9.282c1.352 0 2.445-.848 2.663-2.087l1.626-11.49.818.442c.364.193.82.06 1.017-.304.196-.363.06-.818-.304-1.016zm-4.638 12.133c-.107.606-.703.822-1.18.822H7.36c-.48 0-1.075-.216-1.178-.798L4.48 7.69 12 3.628l7.522 4.06-1.7 12.015z"></path>\
+                        <path d="M8.22 12.184c0 2.084 1.695 3.78 3.78 3.78s3.78-1.696 3.78-3.78-1.695-3.78-3.78-3.78-3.78 1.696-3.78 3.78zm6.06 0c0 1.258-1.022 2.28-2.28 2.28s-2.28-1.022-2.28-2.28 1.022-2.28 2.28-2.28 2.28 1.022 2.28 2.28z"></path>
+                    </g>
+                </svg>
+                <span>Homepage</span>
+            </div> 
+        </a>
+        <a href="/explore-page" class="sidenavLink">
+            <div class="sidenavElementContainer">
+                <svg>
+                    <g>
+                        <path d="M21 7.337h-3.93l.372-4.272c.036-.412-.27-.775-.682-.812-.417-.03-.776.27-.812.683l-.383 4.4h-6.32l.37-4.27c.037-.413-.27-.776-.68-.813-.42-.03-.777.27-.813.683l-.382 4.4H3.782c-.414 0-.75.337-.75.75s.336.75.75.75H7.61l-.55 6.327H3c-.414 0-.75.336-.75.75s.336.75.75.75h3.93l-.372 4.272c-.036.412.27.775.682.812l.066.003c.385 0 .712-.295.746-.686l.383-4.4h6.32l-.37 4.27c-.036.413.27.776.682.813l.066.003c.385 0 .712-.295.746-.686l.382-4.4h3.957c.413 0 .75-.337.75-.75s-.337-.75-.75-.75H16.39l.55-6.327H21c.414 0 .75-.336.75-.75s-.336-.75-.75-.75zm-6.115 7.826h-6.32l.55-6.326h6.32l-.55 6.326z"></path>
+                    </g>
+                </svg>
+                <span>Explore</span>
+            </div>
+        </a>
+        <a href="/log-out">
+            <div class="sidenavElementContainer">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"> <g> <path fill="none" d="M0 0h24v24H0z"/> <path d="M5 22a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v3h-2V4H6v16h12v-2h2v3a1 1 0 0 1-1 1H5zm13-6v-3h-7v-2h7V8l5 4-5 4z"/> </g> </svg>
+                <span>Log out</span>
+            </div>
+        </a>
+        <a href="/create-post" class="sidenavLink" id="createPost">Create Post</a>
+    </div>
+    
+    <style>
+        body{
+            display: flex;
+            margin: 0px;
+            font-family: Helvetica, Arial, sans-serif;
+        }
+        a{
+            text-decoration: none;
+            color: black;
+        }
+        p{
+            margin: 0px;
+        }
+        svg{
+            width: 1.75rem;
+            height: 1.75rem;
+            align-items: flex-start;
+            
+        }
+        .sidenav{
+            display: flex;
+            flex-direction: column;
+            width: 275px;
+            flex-grow: 1;
+            font-size: 20px;
+            align-items: flex-end;
+        }
+        .sidenavContainer{
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            position: fixed;
+            width: 275px;
+            padding-left: 12px;
+            padding-right: 12px;
+        }
+        .sidenavElementContainer{
+            display: flex;
+            align-items: center;
+            padding: 12px;
+        }
+        .sidenavElementContainer:hover{
+            background-color: rgba(15, 20, 25, 0.1);
+            border-radius: 9999px;
+        }
+        .bwitterLogo{
+            fill: #ff5200;
+        }
+        .bwitterLogoContainer{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            display: flex;
+            align-items: center;
+            padding: 12px;
+        }
+        .bwitterLogoContainer:hover{
+            background-color: #fdd7c6;
+            border-radius: 9999px;
+        }
+        span{
+            align-items: center;
+            margin-left: 20px;
+            margin-right: 16px;
+        }
+        #createPost{
+            background-color: #ff5200;
+            border-radius: 9999px;
+            display: flex;
+            justify-content:
+            center ;
+            align-items: center;
+            width: 15rem;
+            height: 4rem;
+            color: white;
+            font-weight: 700;
+            margin-top: 16px;
+        }
+        #createPost:hover{
+            background-color: #e0510e;
+        }
+        .homepageRightSideContainer{
+            flex-grow: 1;
+            align-items: flex-end;
+        }
+        .homepageRightSide{
+            display: flex;
+            width: 990px;
+            justify-content: space-between;
+        }
+        .rightSide{
+            width: 350px;
+            margin-right: 10px;
+        }
+        .homepageTopContent{
+            padding-top: 12px;
+            padding-left: 16px;
+            padding-right: 16px;
+            border-bottom-width: 1px;
+            border-bottom-color: rgb(239, 243, 244);
+            border-bottom-style: solid;
+            padding-bottom: 12px;
+        }
+        .userBackground{
+            padding: 15%;
+            background-color: rgb(207, 217, 222);
+        }
+        .backgroundImg{
+            width: 100%;
+        }
+        .homepageTopContentImgContainer{
+            display: flex;
+            
+            justify-content: space-between;
+            
+        }
+        .profileImgContainer{
+            margin-top: -77px;
+        }
+        .profileImgBorder{
+            border: 3px solid white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 30%;
+            margin: 0px;
+        }
+        .profileImg{
+            width: 100%;
+            height: auto;
+            border-radius: 50%;
+        }
+        .accountName{
+            font-size: 20px;
+            font-weight: 800;
+            margin: 0px;
+        }
+        .username{
+            color: rgb(83, 100, 113);
+            font-size: 15px;
+            margin: 0px;
+        }
+        .topUsername{
+            margin-bottom: 12px;
+        }
+        .accountNameButton{
+            border-radius: 9999px;
+            background-color: white;
+            border-color: rgb(207, 217, 222);
+            border-width: 1px;
+            border-style: solid;
+            font-weight: 700;
+            font-size: 15px;
+            padding-right: 16px;
+            padding-left: 16px;
+            padding-top: 12px;
+            padding-bottom: 12px;
+            margin-right: 16px;
+        }
+        .accountNameButton:hover{
+            background-color: rgba(15, 20, 25, 0.1);
+            cursor: pointer;
+        }
+        .homepageFollowContainer{
+            display: flex;
+        }
+        .followLink{
+            font-size: 14px;
+            display: flex;
+        }
+        .followLinkLeft{
+            margin-right: 20px;
+        }
+        .followLink:hover{
+            text-decoration: underline;
+        }
+        .followLinkNum{
+            font-weight: 700;
+        }
+        .followLinkText{
+            color: rgb(83, 100, 113);
+            margin-left: 3px;
+        }
+        .blogs-content{
+            border:  solid rgb(239, 243, 244);
+            border-right-width: 1px;
+            border-left-width: 1px;
+            width: 100%;
+            max-width: 600px;
+        }
+        .followForm{
+            display: flex;
+            align-items: center;
+        }
+        .followButton{
+            border-radius: 9999px;
+            background-color: white;
+            border-color: rgb(207, 217, 222);
+            border-width: 1px;
+            border-style: solid;
+        }
+        .followButton:hover{
+            background-color: rgba(15, 20, 25, 0.1);
+            cursor: pointer;
+        }
+        #followButton-following{
+            background-color: black;
+            color: white;
+        }
+        .addPostsToView{
+            margin: 16px 12px;
+        }
+        .bweetContainer{
+            display: flex;
+            border-bottom-style: solid;
+            border-bottom-width: 1px;
+            border-bottom-color: rgb(239, 243, 244);
+            font-size: 15px;
+            padding-left: 16px;
+            padding-right: 16px;
+            padding-bottom: 12px;
+            padding-top: 12px;
+        }
+        .bweetContainer:hover{
+            background-color: rgba(0, 0, 0, 0.03);
+        }
+        .postImgContainer{
+            margin-right: 12px;
+        }
+        .postImg{
+            border-radius: 50%;
+            height: 48px;
+            width: 48px;
+        }
+        .postContentContainer{
+            display: flex;
+            width: 100%;
+            flex-direction: column;
+        }
+        .bweetTopContainer{
+            display: flex;
+            justify-content: space-between;
+            flex: 1;
+        }
+        .bweetTopContainerOther{
+            margin-bottom: 11px;
+        }
+        .bweetNameContainer{
+            display: flex;
+        }
+        .postNameButton{
+            background: none;
+	        color: inherit;
+	        border: none;
+	        padding: 0;
+	        font: inherit;
+	        cursor: pointer;
+	        outline: inherit;
+            display: flex;
+        }
+        .postAccountName{
+            font-weight: 700;
+        }
+        .postAccountName:hover{
+            text-decoration: underline;
+        }
+        .postUsername{
+            margin-left: 4px;
+            color: rgb(83, 100, 113);
+        }
+        .removeForm{
+            display: flex;
+            justify-content: flex-end;
+        }
+        .removeButton{
+            width: 1.75rem;
+            height: 1.75rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0px;
+            padding: 0px;
+            background: none;
+            cursor: pointer;
+            border: none;
+        }
+        .removeButton:hover{
+            background-color: rgba(15, 20, 25, 0.1);
+            cursor: pointer;
+        }
+        .bweetText{
+            margin-top: 0px;
+        }
+        .postButtonContainer{
+            display: flex;
+            margin-top: 12px;
+        }
+        .buttonForm{
+            display: flex;
+            font-size: 13px;
+            align-items: center;
+            margin-right: 15px;
+        }
+        .likeButton{
+            width: 15px;
+            height: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0px;
+            padding: 0px;
+            background: none;
+            cursor: pointer;
+            border: none;
+            border-radius: 9999px;
+        }
+        .rebweetButton{
+            width: 20px;
+            height: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0px;
+            padding: 0px;
+            background: none;
+            cursor: pointer;
+            border: none;
+            border-radius: 9999px;
+        }
+        .individualPostButton{
+            width: 1.5rem;
+            height: 1.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0px;
+            padding: 0px;
+            background: none;
+            cursor: pointer;
+            border: none;
+            border-radius: 9999px;
+        }
+        .rebweetContainer{
+            height: 25px;
+            width: 25px;
+            border-radius: 9999px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 12px;
+        }
+        .rebweetContainer:hover{
+            background-color: rgba(0, 186, 124, 0.1);
+        }
+        .heartContainer{
+            height: 25px;
+            width: 25px;
+            border-radius: 9999px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 12px;
+        }
+        .heartContainer:hover{
+            background-color: rgba(249, 24, 128, 0.1);
+        }
+        .postInput {
+            height: 160px;
+            padding: 12px 20px;
+            box-sizing: border-box;
+            border-style: none;
+            font-size: 23px;
+            font-family: Helvetica, Arial, sans-serif;
+            resize: none;
+            flex: 1;
+        }
+        .changeAccountNameContent{
+            border:  solid rgb(239, 243, 244);
+            border-right-width: 1px;
+            border-left-width: 1px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            max-width: 620px;
+        }
+        .changeAccountNameForm{
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            margin-top: 12px;
+            margin-bottom: 12px;
+        }
+        .accountNameInput{
+            padding: 12px 20px;
+            box-sizing: border-box;
+            border-style: none;
+            font-size: 23px;
+            font-family: Helvetica, Arial, sans-serif;
+            resize: none;
+            flex: 1;
+            margin-left: 16px;
+            margin-right: 16px;
+        }
+        .individualPostContainer{
+            padding-right: 16px;
+            padding-left: 16px;
+            border-bottom-style: solid;
+            border-bottom-width: 1px;
+            border-bottom-color: rgb(239, 243, 244);
+            font-size: 23px;
+        }
+        .individualPostTop{
+            display: flex;
+            align-items: center;
+        }
+        .individualPostReplyContainer{
+            padding-right: 16px;
+            padding-left: 16px;
+            font-size: 15px;
+        }
+        .individualPostAccountName{
+            font-weight: 700;
+            font-size: 15px;
+            margin: 0px;
+            line-height: 20px;
+        }
+        .individualPostAccountName:hover{
+            text-decoration: underline;
+        }
+        .individualPostUsername{
+            color: rgb(83, 100, 113);
+            font-size: 15px;
+            margin: 0px;
+        }
+        .individualPostIconContainer{
+            padding-bottom: 8px;
+            padding-top: 8px;
+            border-top-style: solid;
+            border-top-width: 1px;
+            border-top-color: rgb(239, 243, 244);
+            display: flex;
+            justify-content: space-around;
+        }
+        .individualPostHeartContainer{
+            height: 2.3rem;
+            width: 2.3rem;
+            border-radius: 9999px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .individualPostHeartContainer:hover{
+            background-color: rgba(249, 24, 128, 0.1);
+        }
+        .individualPostRebweetContainer{
+            height: 2.3rem;
+            width: 2.3rem;
+            border-radius: 9999px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .individualPostRebweetContainer:hover{
+            background-color: rgba(0, 186, 124, 0.1);
+        }
+        .individualPostInfoContainer{
+            display: flex;
+            font-size: 13px;
+            padding-bottom: 16px;
+            padding-top: 16px;
+            align-items: center;
+            border-top-style: solid;
+            border-top-width: 1px;
+            border-top-color: rgb(239, 243, 244);
+        }
+        .individualPostInfo{
+            display: flex;
+        }
+        .individualPostInfoAmount{
+            font-weight: 700;
+        }
+        .individualPostInfoName{
+            margin-left: 5px;
+            color: rgb(83, 100, 113);
+            margin-right: 20px;
+        }
+        .individualPostContent{
+            margin-top: 12px;
+            margin-bottom: 16px;
+        }
+        .individualPostReplyForm{
+            padding-top: 12px;
+            padding-bottom: 12px;
+            padding-left: 16px;
+            padding-right: 16px;
+            display: flex;
+            border-top-style: solid;
+            border-top-width: 1px;
+            border-top-color: rgb(239, 243, 244);
+        }
+        .individualReplyInput{
+            height: 80px;
+            padding: 12px 20px;
+            box-sizing: border-box;
+            border-style: none;
+            font-size: 23px;
+            font-family: Helvetica, Arial, sans-serif;
+            resize: none;
+            flex: 1;
+        }
+        .individualPostReplyButtonContainer{
+            display: flex;
+            align-items: center;
+        }
+        .individualPostReplyButton{
+            border-radius: 9999px;
+            background-color: #ff5200;
+            border-style: none;
+            color: white;
+            padding-left: 16px;
+            padding-right: 16px;
+            font-size: 15px;
+            font-weight: 700;
+            height: 34px;
+            margin-left: 12px;
+        }
+        .individualPostReplyButton:hover{
+            cursor: pointer;
+            background-color: #e0510e;
+        }
+        .individualPostReply{
+            padding-top: 12px;
+            padding-bottom: 12px;
+            border-bottom-style: solid;
+            border-bottom-width: 1px;
+            border-bottom-color: rgb(239, 243, 244);
+            display: flex;
+        }
+        .otherUserReply{
+            margin-top: 8px;
+        }
+        .followBody{
+            width: 50%; 
+            display: flex;
+            flex-direction: column;
+        }
+        .followContainer{
+            display: flex;
+            justify-content: space-between;
+            border-bottom-style: solid;
+            border-bottom-width: 1px;
+            border-bottom-color: rgb(239, 243, 244);
+            border-right-width: 1px;
+            border-right-color: rgb(239, 243, 244);
+            border-right-style: solid;
+            border-left-width: 1px;
+            border-left-color: rgb(239, 243, 244);
+            border-left-style: solid;
+            font-size: 15px;
+            padding-left: 16px;
+            padding-right: 16px;
+            padding-bottom: 12px;
+            padding-top: 12px;
+        }
+        .followContainer:hover{
+            background-color: rgba(0, 0, 0, 0.03);
+        }
+        .followInfoContainer{
+            display: flex;
+        }
+        .followNameContainer{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .followSpan{
+            margin: 0px;
+        }
+        .followPageFollowButton-Following{
+            border-radius: 9999px;
+            background-color: black;
+            border-style: solid;
+            border-color: black;
+            color: white;
+            padding-left: 16px;
+            padding-right: 16px;
+            font-size: 15px;
+            font-weight: 700;
+            height: 34px;
+        }
+        .followPageFollowButton-Following:hover span {
+            display: none
+        }
+        .followPageFollowButton-Following:hover:before{
+            content: "Unfollow";
+        }
+        .followPageFollowButton-Following:hover{
+            border-color: rgb(253, 201, 206);
+            background-color: rgba(244, 33, 46, 0.1);
+            color: rgb(244, 33, 46);
+            cursor: pointer;
+        }
+        .followPageFollowButton-NotFollowing{
+            border-radius: 9999px;
+            background-color: white;
+            border-style: solid;
+            border-color: black;
+            color: black;
+            padding-left: 16px;
+            padding-right: 16px;
+            font-size: 15px;
+            font-weight: 700;
+            height: 34px;
+        }
+        .followPageFollowButton-NotFollowing:hover span {
+            display: none
+        }
+        .followPageFollowButton-NotFollowing:hover:before{
+            content: "Follow";
+        }
+        .followPageFollowButton-NotFollowing:hover{
+            background-color: rgba(0, 186, 124, 0.1);
+            color: rgb(0, 141, 94);
+            border-color: rgb(148, 199, 182);
+            cursor: pointer;
+        }
+        .usersToFollowContainer{
+            background-color: rgb(247, 249, 249);
+            display: flex;
+            flex-direction: column;
+            display: inline-block;
+            border-style: none;
+            border-radius: 16px;
+            width: 350px;
+            position: fixed;
+        }
+        .usersToFollowTextContainer{
+            padding-left: 16px;
+            padding-right: 16px;
+            padding-bottom: 12px;
+            padding-top: 12px;
+        }
+        .usersToFollowText{
+            font-size: 20px;
+            font-weight: 800;
+        }
+        .userFollowContainerNoBorder{
+            border-style: none;
+        }
+        .homepageFollow{
+            margin-left: 12px;
+        }
+        .explorePageHeader{
+            padding-left: 16px;
+            margin: 0px;
+            padding-top: 12px;
+            padding-bottom: 12px;
+            border-bottom-width: 1px;
+            border-bottom-color: rgb(239, 243, 244);
+            border-bottom-style: solid;
+        }
+        
+    </style>
+  </div>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+  <% if (currentUser) {%>
+    <%- include("./partials/left-sidebar.ejs") %>
+    <div class="homepageRightSideContainer">
+      <div class="homepageRightSide">
+        <div class="blogs-content">
+          <div class="homepageTop">
+            <% if(user.backgroundImage) { %>
+              <img class="backgroundImg" src="<%= user.backgroundImage %>" alt="background image">
+            <% } else { %>
+              <div class="userBackground"></div>
+            <% } %> 
+            <div class="homepageTopContent">
+              <div class="homepageTopContentImgContainer">
+                <div class="profileImgContainer">
+                  <span class="profileImgBorder">
+                    <img class="profileImg" src="<%= user.image %>" alt="profile-pic">
+                  </span>
+                </div>
+                <% if(thisUser.following.some(e => user._id.equals(e._id))) { %>
+                  <form action="/follow/<%= user._id %>" method="POST">
+                    <button class="followPageFollowButton-Following">
+                      <span class="followSpan">Following</span>
+                    </button>
+                  </form>
+                <% } else { %>
+                  <form action="/follow/<%= user._id %>" method="POST">
+                    <button class="followPageFollowButton-NotFollowing">
+                      <span class="followSpan">Follow</span>
+                    </button>
+                  </form>
+                <% } %>
+              </div>
+              <p class="accountName"><%= user.accountName %></p>
+              <p class="username topUsername">@<%= user.username %></p>
+              <div class="homepageFollowContainer">
+                <a class="followLink followLinkLeft" href="/following/<%= user._id %>">
+                  <p class="followLinkNum"><%= user.following.length %></p>
+                  <p class="followLinkText">Following</p>
+                </a>
+                <a class="followLink" href="/followers/<%= user._id %>">
+                  <p class="followLinkNum"><%= user.followers.length %></p>
+                  <p class="followLinkText">Followers</p>
+                </a>
+              </div>
+            </div>
+          </div>
+          <% if(blogs.length > 0) { %>
+              <% blogs.forEach(blog => { %>
+                <a href="/post/<%= blog.blogPosts._id %>">
+                  <div class="bweetContainer">
+                    <div class="postImgContainer">
+                      <img class="postImg" src="<%= blog.blogPosts.author.image %>" alt="">
+                    </div>
+                    <div class="postContentContainer">
+                      <div class="bweetTopContainerOther">
+                        <div class="bweetNameContainer">
+                          <% if(blog.blogPosts.author.username == currentUser.username) { %>
+                          <form action="/homepage">
+                            <button class="postNameButton">
+                              <p class="postAccountName"><%= blog.blogPosts.author.accountName %></p>
+                              <p class="postUsername">@<%= blog.blogPosts.author.username %></p>
+                            </button>
+                          </form>
+                          <% } else { %>
+                            <form action="/otherHomepage/<%= blog.blogPosts.author._id %>">
+                              <button class="postNameButton">
+                                <p class="postAccountName"><%= blog.blogPosts.author.accountName %></p>
+                                <p class="postUsername">@<%= blog.blogPosts.author.username %></p>
+                              </button>
+                            </form>
+                          <% } %>
+                        </div>
+                      </div>
+                        <p class="bweetText"><%= blog.blogPosts.post %></p>
+                        <% let amountOfLikes = blog.blogPosts.likeArr.length %>
+                        <% let amountOfRebweets = blog.blogPosts.reBweets %>
+                        <div class="postButtonContainer">
+                          <form class="buttonForm" action="/like/<%= blog.blogPosts._id %>" method="POST">
+                            <div class="heartContainer">
+                              <button class="likeButton">
+                                <% if(blog.blogPosts.likeArr.some(e => thisUser._id.equals(e._id))) { %>
+                                  <svg style="color: red" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16"> <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" fill="red"></path> </svg>
+                                <% } else { %>
+                                  <svg style="color: red" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16"> <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" fill="red"></path> </svg>
+                                <% } %>
+                              </button>
+                            </div>
+                            <p><%= amountOfLikes %></p>
+                          </form>
+                          <% if(!(thisUser._id.equals(blog.blogPosts.author._id))) { %>
+                            <% if(thisUser.blogPostsArr.some(e => blog.blogPosts._id.equals(e.blogPosts))) { %>
+                              <form class="buttonForm" action="/delete/<%= blog.blogPosts._id %>" method="POST">
+                                <div class="rebweetContainer">
+                                  <button class="rebweetButton">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M614.2 334.8C610.5 325.8 601.7 319.1 592 319.1H544V176C544 131.9 508.1 96 464 96h-128c-17.67 0-32 14.31-32 32s14.33 32 32 32h128C472.8 160 480 167.2 480 176v143.1h-48c-9.703 0-18.45 5.844-22.17 14.82s-1.656 19.29 5.203 26.16l80 80.02C499.7 445.7 505.9 448 512 448s12.28-2.344 16.97-7.031l80-80.02C615.8 354.1 617.9 343.8 614.2 334.8zM304 352h-128C167.2 352 160 344.8 160 336V192h48c9.703 0 18.45-5.844 22.17-14.82s1.656-19.29-5.203-26.16l-80-80.02C140.3 66.34 134.1 64 128 64S115.7 66.34 111 71.03l-80 80.02C24.17 157.9 22.11 168.2 25.83 177.2S38.3 192 48 192H96V336C96 380.1 131.9 416 176 416h128c17.67 0 32-14.31 32-32S321.7 352 304 352z" fill="rgb(0, 186, 124)"></path></svg>
+                                  </button>
+                                </div>
+                                <p><%= amountOfRebweets %></p>
+                              </form>
+                            <% } else { %>
+                              <form class="buttonForm" action="/ReBweet/<%= blog.blogPosts._id %>" method="POST">
+                                <div class="rebweetContainer">
+                                  <button class="rebweetButton">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M614.2 334.8C610.5 325.8 601.7 319.1 592 319.1H544V176C544 131.9 508.1 96 464 96h-128c-17.67 0-32 14.31-32 32s14.33 32 32 32h128C472.8 160 480 167.2 480 176v143.1h-48c-9.703 0-18.45 5.844-22.17 14.82s-1.656 19.29 5.203 26.16l80 80.02C499.7 445.7 505.9 448 512 448s12.28-2.344 16.97-7.031l80-80.02C615.8 354.1 617.9 343.8 614.2 334.8zM304 352h-128C167.2 352 160 344.8 160 336V192h48c9.703 0 18.45-5.844 22.17-14.82s1.656-19.29-5.203-26.16l-80-80.02C140.3 66.34 134.1 64 128 64S115.7 66.34 111 71.03l-80 80.02C24.17 157.9 22.11 168.2 25.83 177.2S38.3 192 48 192H96V336C96 380.1 131.9 416 176 416h128c17.67 0 32-14.31 32-32S321.7 352 304 352z" fill="rgb(83, 100, 113)"></path></svg>
+                                  </button>
+                                </div>
+                                <p><%= amountOfRebweets %></p>
+                              </form>
+                            <% } %>
+                          <% } %>
+                        </div>
+                    </div>
+                    
+                  </div>
+                </a>
+              <% }) %> 
+          <% } else { %> 
+                <p>User has not added any blogs</p>
+          <% } %>
+        </div>
+        <div class="rightSide">
+          <div class="usersToFollowContainer">
+            <div class="usersToFollowTextContainer">
+              <p class="usersToFollowText">You might like</p>
+            </div>
+            <% usersToFollow.forEach(userToFollow => { %>
+              <a href="/otherHomepage/<%= userToFollow._id %>">
+                <div class="followContainer userFollowContainerNoBorder">
+                  <div class="followInfoContainer">
+                    <div class="postImgContainer">
+                      <img class="postImg" src="<%= userToFollow.image %>" alt="">
+                    </div>
+                    <div class="followNameContainer">
+                      <p class="postAccountName"><%= userToFollow.accountName %></p>
+                      <p class="postUsername">@<%= userToFollow.username %></p>
+                    </div>
+                  </div>
+                  <% if(thisUser.following.some(e => userToFollow._id.equals(e._id))) { %>
+                    <form class="followForm" action="/follow/<%= userToFollow._id %>" method="POST">
+                      <button class="followPageFollowButton-Following homepageFollow">
+                        <span class="followSpan">Following</span>
+                      </button>
+                    </form>
+                  <% } else { %>
+                    <form class="followForm" action="/follow/<%= userToFollow._id %>" method="POST">
+                      <button class="followPageFollowButton-NotFollowing homepageFollow">
+                        <span class="followSpan">Follow</span>
+                      </button>
+                    </form>
+                  <% } %>
+                </div>
+              </a>
+            <% }) %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% } else { %>
+    <h1>please log in to see this user's homepage</h1>
+    <a href="/">LOG IN</a>
+  <%}%>
+</body>
+</html>

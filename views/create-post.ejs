@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+  <% if (currentUser) {%>
+    <%- include("./partials/left-sidebar.ejs") %>
+    <div class="homepageRightSideContainer">
+      <div class="homepageRightSide">
+        <div class="blogs-content">
+          <form class="individualPostReplyForm" action="/create-post" method="POST">
+              <textarea class="postInput" name="post" placeholder="Write Post" cols="30" rows="10" maxlength="280"></textarea>
+              <div class="individualPostReplyButtonContainer">
+                <button class="individualPostReplyButton">Post</button>
+              </div>
+            </form>
+          </div>
+          <div class="rightSide">
+            <div class="usersToFollowContainer">
+              <div class="usersToFollowTextContainer">
+                <p class="usersToFollowText">You might like</p>
+              </div>
+              <% usersToFollow.forEach(userToFollow => { %>
+                <a href="/otherHomepage/<%= userToFollow._id %>">
+                  <div class="followContainer userFollowContainerNoBorder">
+                    <div class="followInfoContainer">
+                      <div class="postImgContainer">
+                        <img class="postImg" src="<%= userToFollow.image %>" alt="">
+                      </div>
+                      <div class="followNameContainer">
+                        <p class="postAccountName"><%= userToFollow.accountName %></p>
+                        <p class="postUsername">@<%= userToFollow.username %></p>
+                      </div>
+                    </div>
+                    <% if(user.following.some(e => userToFollow._id.equals(e._id))) { %>
+                      <form class="followForm" action="/follow/<%= userToFollow._id %>" method="POST">
+                        <button class="followPageFollowButton-Following homepageFollow">
+                          <span class="followSpan">Following</span>
+                        </button>
+                      </form>
+                    <% } else { %>
+                      <form class="followForm" action="/follow/<%= userToFollow._id %>" method="POST">
+                        <button class="followPageFollowButton-NotFollowing homepageFollow">
+                          <span class="followSpan">Follow</span>
+                        </button>
+                      </form>
+                    <% } %>
+                  </div>
+                </a>
+              <% }) %>
+            </div>
+          </div>
+      </div>
+    </div>
+  <% } else { %>
+    <h1>please log in to create your own posts</h1>
+  <%}%>
+</body>
+</html>
