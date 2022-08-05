@@ -14,6 +14,7 @@ const db = mongoose.connection;
 db.on("error", console.error.bind(console, "mongo connection error"));
 
 let isLiked = false;
+const port = process.env.PORT || 3000
 
 const User = mongoose.model(
   "User",
@@ -617,4 +618,4 @@ app.post("/change-accountName", (req, res) => {
   })
 })
 
-app.listen(3000, () => console.log("app listening on port 3000!"));
+app.listen(port, () => console.log("app listening on port 3000!"));
