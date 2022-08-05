@@ -356,7 +356,7 @@ app.get("/otherHomepage/:id", (req, res) => {
         else{
           User.find()
           .exec(function(err, randomUsers) {
-          let someUsers = randomUsers.filter(randomUser => (!(user.following.includes(randomUser._id)) && !(randomUser._id.equals(user._id)) && !(user.followers.includes(randomUser._id))));
+          let someUsers = randomUsers.filter(randomUser => (!(thisUser.following.includes(randomUser._id)) && !(randomUser._id.equals(thisUser._id)) && !(thisUser.followers.includes(randomUser._id))));
           let shuffledUsers = someUsers.sort(() => 0.5 - Math.random());
           let usersToFollow = shuffledUsers.slice(0, 3);
           let reversedBlogsArray = user.blogPostsArr.reverse();
