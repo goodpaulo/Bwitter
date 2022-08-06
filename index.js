@@ -347,7 +347,6 @@ app.get("/otherHomepage/:id", (req, res) => {
       console.log(err)
     }
     else{
-      let reversedBlogsArray = user.blogPostsArr.reverse();
       User.findOne({username: req.user.username})
       .exec(function (err, thisUser) {
         if(err){
