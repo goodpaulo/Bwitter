@@ -20,6 +20,14 @@ Users can then view their homepage. This is where users can see all the posts th
 -
 -
 
+Users can look at their who they're following as well as who's following them. Users can also do this for other accounts.
+
+![image](https://user-images.githubusercontent.com/36121052/183556401-7a480d64-5d07-4602-8d53-f816f172d92e.png)
+
+-
+-
+-
+
 The explore page shows the newest posts from other accounts that the user does not have on their own page. The user can go to the individual post's page or the author's homepage, as well as like or add the post their own page by clicking the ReBweet button.
 
 ![image](https://user-images.githubusercontent.com/36121052/183555090-721d0b34-692b-4ec6-ac8d-e3a8e369a71c.png)
