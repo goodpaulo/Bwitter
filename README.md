@@ -6,7 +6,7 @@ Twitter clone website. Users can sign up and log in, write and like posts, as we
 In the landing page, users can sign up and create a new account on the website, or log-in if they already have an account.
 Authentication is handled by the Passport API; users' username and passwords are saved on a MongoDB dabatase, with the password being encrypted.
 
-![image](https://user-images.githubusercontent.com/36121052/183520171-f864a790-ca14-42a9-a53d-1eb38c533a21.png)
+![image](https://user-images.githubusercontent.com/36121052/183555431-b292e092-ec3f-4782-a9d2-e2d9304849fd.png)
 
 
 Users can then view their homepage. This is where users can see all the posts they've created, as well as all the posts from other user's that they've added to their homepage. Every page has a list of other accounts for a user to check out or follow, as well as a sidebar where users can go back to their homepage, go to the explore page and look at other posts, as well as log out from the website. The user can also remove any posts from their homepage.
