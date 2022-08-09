@@ -16,7 +16,7 @@ Users can then view their homepage. This is where users can see all the posts th
 
 The explore page shows the newest posts from other accounts that the user does not have on their own page. The user can go to the individual post's page or the author's homepage, as well as like or add the post their own page by clicking the ReBweet button.
 
-![image](https://user-images.githubusercontent.com/36121052/183547830-c91ff277-c011-4082-b609-b69dc08e0ca4.png)
+![image](https://user-images.githubusercontent.com/36121052/183555090-721d0b34-692b-4ec6-ac8d-e3a8e369a71c.png)
 
 
 A user can view an individual post and reply to it, as well as see all the other replies people have made to that post. Users can also remove any replies they've made to the post.
